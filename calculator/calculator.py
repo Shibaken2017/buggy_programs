@@ -8,8 +8,16 @@ from tornado.options import define,options
 define("port",default=8000,help="run on th e given port",type=int)
 
 
+def calculator(num1,num2,mode):
 
-
+    if mode=="addition":
+        return num1+num2
+    elif mode=="substraction":
+        return num1-num2
+    elif mode=="multiplication":
+        return num1*num2
+    else:
+        return num1/num2
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -20,13 +28,19 @@ class IndexHandler(tornado.web.RequestHandler):
         self.render("index.html")
 
 
+
+
+
 class ResultHandler(tornado.web.RequestHandler):
     def post(self):
         num1=int(self.get_argument("num1"))
         num2=int(self.get_argument("num2"))
         mode=self.get_argument("mode")
-        #
+        print(num1)
+
+        print(mode)
         output=calculator(num1,num2,mode)
+        print(output)
         self.render("result.html",num1=num1,num2=num2,mode=mode,output=output)
 
 
@@ -36,16 +50,6 @@ class ResultHandler(tornado.web.RequestHandler):
 
 
 
-def calculator(num1,num2,mode):
-
-    if mode=="plus":
-        return num1+num2
-    elif mode=="minus":
-        return num1-num2
-    elif mode=="multiply":
-        return num1*num2
-    else:
-        return num1/num2
 
 
 
