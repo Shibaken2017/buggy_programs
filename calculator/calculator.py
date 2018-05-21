@@ -33,8 +33,8 @@ class IndexHandler(tornado.web.RequestHandler):
 
 class ResultHandler(tornado.web.RequestHandler):
     def post(self):
-        num1=int(self.get_argument("num1"))
-        num2=int(self.get_argument("num2"))
+        num1=int(float(self.get_argument("num1")))
+        num2=int(float(self.get_argument("num2")))
         mode=self.get_argument("mode")
         print(num1)
 
